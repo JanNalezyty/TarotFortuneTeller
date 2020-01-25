@@ -6,7 +6,6 @@ class MajorArcana
       @softDescription = softDescription
       @hardDescription = hardDescription
     end
-#to_s tutaj overajduje rubiowe to_s, które printuje tylko klasę jako obiekt w pamięci
     def to_s
         "#{title}, #{number} his atributes are: #{softDescription}, #{hardDescription}.\n"
     end
