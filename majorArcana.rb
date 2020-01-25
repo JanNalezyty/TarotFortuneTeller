@@ -22,30 +22,14 @@ class Deck
       end
 end
 
-majors = Deck.new
+require 'csv'
+path = 'C:\Users\User\Desktop\MyStuff\RUBY\tarot\cards.csv'
+
 arrayOfMajorArcana = Array.new
+cards = CSV.read(path).collect{ |row| MajorArcana.new *row }
 
-arrayOfMajorArcana << fool = MajorArcana.new("Fool", "0", "Głupiec", "Element of Air + Ketter to Chokmach")
-arrayOfMajorArcana << mage = MajorArcana.new("Mage", "I", "Mag","O")
-arrayOfMajorArcana << priestes = MajorArcana.new("Priestes", "II", "Kapłanka","O")
-arrayOfMajorArcana << empress = MajorArcana.new("Empress", "III", "Cesarzowa", "O")
-arrayOfMajorArcana << emperor = MajorArcana.new("Emperor", "IV", "Cesarz", "O")
-arrayOfMajorArcana << hierophant = MajorArcana.new("Hierophant", "V", "Papież", "O")
-arrayOfMajorArcana <<  lovers = MajorArcana.new("Lovers", "VI", "Kochankowie", "O")
-arrayOfMajorArcana << chariot = MajorArcana.new("Chariot", "VII", "Rydwan", "O")
-arrayOfMajorArcana << adjustment = MajorArcana.new("Adjustment", "VIII", "Dopasowanie", "O")
-arrayOfMajorArcana << hermit = MajorArcana.new("Hermit", "IX", "Pustelnik", "ooooooooo")
-arrayOfMajorArcana << fortune = MajorArcana.new("Fortune", "X", "Koło Fortuny", "000")
-arrayOfMajorArcana << lust = MajorArcana.new("Lust", "XI", "Żądza", "000")
-arrayOfMajorArcana << hangedMan = MajorArcana.new("HangedMan", "XII", "Wisielec", "ooo")
-arrayOfMajorArcana << death = MajorArcana.new("Death", "XIII", "Śmierć", "ooo")
-arrayOfMajorArcana << art = MajorArcana.new("Art", "XIV", "Sztuka", "oooo")
-arrayOfMajorArcana << devil = MajorArcana.new("Devil", "XV", "Diabeł", "ooo")
-arrayOfMajorArcana << tower = MajorArcana.new("Tower", "XVI", "Wieża", "ooo")
-arrayOfMajorArcana << star = MajorArcana.new("Star", "XVII", "Gwiazda", "oooo")
-arrayOfMajorArcana << moon = MajorArcana.new("Moon", "XVIII", "Księżyc","ooo")
-arrayOfMajorArcana << sun = MajorArcana.new("Sun", "XIX", "Słońce", "ooo")
-arrayOfMajorArcana << aeon = MajorArcana.new("Aeon", "XX", "Era", "ooo")
-arrayOfMajorArcana << universe = MajorArcana.new("Universe", "XXI", "Wszechświat", "ooo")
+for card in cards
+  arrayOfMajorArcana << card
+end
 
-majors.draw(9, arrayOfMajorArcana)
+majors = Deck.new.draw(9, arrayOfMajorArcana)
