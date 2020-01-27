@@ -1,3 +1,6 @@
+require 'csv'
+require_relative = "./cards.csv"
+
 class MajorArcana
   attr_reader :title, :number, :softDescription, :hardDescription
   def initialize(title, number, softDescription, hardDescription)
@@ -12,21 +15,18 @@ class MajorArcana
 end
 
 class Deck
-    def draw(n, arrayOfMajorArcana)
-        arrayOfMajorArcana = arrayOfMajorArcana.to_a.shuffle
+    def draw(n, deck)
+        deck = deck.to_a.shuffle
         for i in ( 1..n )
-          print arrayOfMajorArcana[i]
+          print deck[i]
         end
         print "You draw " + i.to_s
       end
 end
 
-require 'csv'
-path = 'C:\Users\User\Desktop\MyStuff\RUBY\tarot\cards.csv'
 
 arrayOfMajorArcana = Array.new
-cards = CSV.read(path).collect{ |row| MajorArcana.new *row }
-
+cards = CSV.read(require_relative).collect{ |row| MajorArcana.new *row }
 for card in cards
   arrayOfMajorArcana << card
 end
