@@ -15,8 +15,10 @@ class MajorArcana
 end
 
 class Deck
-    def draw(n, deck)
-        deck = deck.to_a.shuffle
+  def shuffle(deck)
+    deck = deck.to_a.shuffle
+  end
+  def draw(n, deck)
         for i in ( 1..n )
           print deck[i]
         end
@@ -31,4 +33,5 @@ for card in cards
   arrayOfMajorArcana << card
 end
 
+shuffleMajors = Deck.new.shuffle(arrayOfMajorArcana)
 majors = Deck.new.draw(9, arrayOfMajorArcana)
