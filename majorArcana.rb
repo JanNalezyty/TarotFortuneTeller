@@ -1,5 +1,5 @@
 require 'csv'
-require_relative = "./cards.csv"
+cardFile = "./cards.csv"
 
 class MajorArcana
   attr_reader :title, :number, :softDescription, :hardDescription
@@ -28,7 +28,7 @@ end
 
 
 arrayOfMajorArcana = Array.new
-cards = CSV.read(require_relative).collect{ |row| MajorArcana.new *row }
+cards = CSV.read(cardFile).collect{ |row| MajorArcana.new *row }
 for card in cards
   arrayOfMajorArcana << card
 end
