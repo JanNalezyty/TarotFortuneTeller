@@ -1,5 +1,4 @@
 require 'csv'
-cardFile = "./cards.csv"
 
 class MajorArcana
   attr_reader :title, :number, :softDescription, :hardDescription
@@ -10,15 +9,21 @@ class MajorArcana
       @hardDescription = hardDescription
     end
     def to_s
-        "#{title}, #{number} his atributes are: #{softDescription}, #{hardDescription}.\n"
+        "#{title}, #{number} :#{softDescription}, #{hardDescription}.\n"
     end
 end
 
 class Deck
-  def shuffle(deck)
-    deck = deck.to_a.shuffle
+def add_to_deck
+  cardFile = "./cards.csv"
+  arrayOfMajorArcana = []
+  cards = CSV.read(cardFile).collect{ |row| MajorArcana.new *row }
+  for card in cards
+    arrayOfMajorArcana << card
   end
-  def draw(n, deck)
+end
+def draw(n, deck)
+        deck = deck.to_a.shuffle
         for i in ( 1..n )
           print deck[i]
         end
@@ -26,12 +31,5 @@ class Deck
       end
 end
 
-
-arrayOfMajorArcana = Array.new
-cards = CSV.read(cardFile).collect{ |row| MajorArcana.new *row }
-for card in cards
-  arrayOfMajorArcana << card
-end
-
-shuffleMajors = Deck.new.shuffle(arrayOfMajorArcana)
-majors = Deck.new.draw(9, arrayOfMajorArcana)
+shuffledDeck = Deck.new.add_to_deck
+draw9 = Deck.new.draw(9, shuffledDeck)
